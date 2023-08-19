@@ -1,23 +1,12 @@
 pipeline {
-  agent any
-  stages {
-    stage('Build') {
-      steps {
-        sh 'python time.py'
-      }
+    agent {
+        docker { image 'node:18.17.1-alpine3.18' }
     }
-
-    stage('Test') {
-      steps {
-        echo 'Testing'
-      }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+            }
+        }
     }
-
-    stage('Deploy') {
-      steps {
-        echo 'Deploying'
-      }
-    }
-
-  }
 }
